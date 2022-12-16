@@ -2451,7 +2451,7 @@
         "payload": "{\"cmd\":\"stop\"}",
         "payloadType": "json",
         "x": 110,
-        "y": 680,
+        "y": 700,
         "wires": [
             [
                 "c1c1ca82cc83bc9f"
