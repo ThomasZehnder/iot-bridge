@@ -1799,8 +1799,8 @@
         "z": "87e6968d6cda179f",
         "name": "",
         "topic": "fab-001/line-001/assembly-001/state",
-        "qos": "",
-        "retain": "",
+        "qos": "2",
+        "retain": "true",
         "respTopic": "",
         "contentType": "",
         "userProps": "",
@@ -2322,8 +2322,8 @@
         "type": "function",
         "z": "87e6968d6cda179f",
         "name": "add led to assembyl status",
-        "func": "var assembly = flow.get(\"assembly-001\")   \n\nassembly.led = msg.payload\n\nflow.set(\"assembly-001\", assembly )   \n\nreturn msg;",
-        "outputs": 1,
+        "func": "var assembly = flow.get(\"assembly-001\")   \n\nassembly.led = msg.payload\n\nflow.set(\"assembly-001\", assembly)   \n\nvar msg_assembly = {payload : assembly}\n\nreturn [msg, msg_assembly];",
+        "outputs": 2,
         "noerr": 0,
         "initialize": "",
         "finalize": "",
@@ -2333,6 +2333,9 @@
         "wires": [
             [
                 "df52cc04281a7d4f"
+            ],
+            [
+                "4cd29ee56f2f4b31"
             ]
         ]
     },
