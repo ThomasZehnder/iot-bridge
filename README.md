@@ -1,7 +1,7 @@
 # iot-bridge
 IoT Bridge MQTT to Rest
 
-## Install from Git
+## Get from Git
     git clone https://github.com/ThomasZehnder/iot-bridge.git
 
 ## Install Node-Red and Libraries   
