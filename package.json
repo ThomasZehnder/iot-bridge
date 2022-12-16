@@ -4,6 +4,7 @@
   "description": "POC MQTT 2 Rest Service Bridge",
   "main": "index.js",
   "scripts": {
+    "first npm update": "npm update",
     "run node-red mr-know": "node ./node_modules/node-red/red.js ./flows/node-red-flow.json --userDir ./node-red-data/"
   },
   "author": "Thomas Zehnder",
