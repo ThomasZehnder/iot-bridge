@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Job for Assembly-001</title>
+
+    <style>
+      html, body {
+      display: flex;
+      justify-content: center;
+      height: 100%;
+      }
+      body, div, h1, form, input, p { 
+      padding: 0;
+      margin: 0;
+      outline: none;
+      font-family: Roboto, Arial, sans-serif;
+      font-size: 16px;
+      color: #666;
+      }
+      h1 {
+      padding: 10px 10px;
+      font-size: 32px;
+      font-weight: 300;
+      text-align: center;
+      }
+      h2 {
+      padding: 4px 10px;
+      margin: 4px;
+      font-size: 24px;
+      font-weight: 300;
+      text-align: left;
+      }     
+      p {
+      font-size: 12px;
+      text-align: center;
+      }
+      pre {
+      font-size: 12px;
+      text-align: left;
+      margin : 0;
+      padding: 4px;
+      }
+      hr {
+      color: #a9a9a9;
+      opacity: 0.3;
+      }
+      .grey{
+        background-color: #a9a9a9;
+        width: calc(100%-20px);
+      padding: 0 10px ;
+      margin: 0 10px ;
+      border-radius: 8px;
+      }
+      .main-block {
+      max-width: 340px; 
+      min-height: 460px; 
+      padding: 10px 0;
+      margin: auto;
+      border-radius: 5px; 
+      border: solid 1px #ccc;
+      box-shadow: 1px 2px 5px rgba(0,0,0,.31); 
+      background: #ebebeb; 
+      }
+      form {
+      margin: 0 30px;
+      }
+      input[type=text], input[type=password] {
+      width: 100% ;
+      height: 36px;
+      margin: 13px 0 0 -5px;
+      padding-left: 10px; 
+      border-radius: 0 5px 5px 0;
+      border: solid 1px #cbc9c9; 
+      box-shadow: 1px 2px 5px rgba(0,0,0,.09); 
+      background: #fff; 
+      }
+      input[type=password] {
+      margin-bottom: 15px;
+      }
+
+      .btn-block {
+      margin-top: 10px;
+      text-align: center;
+      }
+      button {
+      width: 100%;
+      padding: 10px 0;
+      margin: 10px auto;
+      border-radius: 5px; 
+      border: none;
+      background: #1c87c9; 
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+      }
+      button:hover {
+      background: #26a9e0;
+      }
+      .btn-50{
+        width: calc(100%-20px);
+        margin: 0 30px;
+      padding-left: 0 10px; 
+      text-align: center;
+      }
+      .btn-red{
+        background: red; 
+        width: 40%;
+        margin: 0 10px;
+      }
+      .btn-green{
+        background: green; 
+        width: 40%;
+        margin: 0 10px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="main-block">
+      <h1>New Order for Assembly 001 Mr.Know Simulation</h1>
+      <form action="/assembly-001/newJob" method="POST">
+
+        <hr>
+        <label for="name"></label>
+        <input type="text" name="jobname" id="jobname" placeholder="Order Name" required/>
+        <hr>
+        <div class="btn-block">
+          <button type="submit" >New Order</button>
+        </div>
+      </form>
+      <hr>
+      <h2> Led On/Off</h2>
+      <div class="btn-50">
+        <button  class="btn-red" onclick = setLedOff()>Led Off</button>
+        <button  class="btn-green" onclick = setLedOn()>Led On</button>
+      </div>
+      <hr>
+      <h2> Assembly State</h2>
+      <div class="grey" > 
+        <pre id="state-div"></pre>
+      </div>
+      
+    </div>
+  
+
+    <script>
+      const server = "http://localhost:1880"
+      //server = ""; //uncomment this line for node-red
+        const element = document.getElementById("state-div");
+        function setLedOff(){
+          setLed("ledOff")
+        }
+        function setLedOn(){
+          setLed("ledon")
+        }
+        function setLed(service) {
+          console.log(service)
+          const myRequest = new Request(server + '/assembly-001/'+ service);
+            fetch(myRequest)
+                .then((response) => response.json())
+                .then((data) => {
+                    element.innerHTML = JSON.stringify(data, '\n', 2)
+                })
+                .catch(console.error);
+        }
+
+        function getAssemblyState() {
+            const myRequest = new Request(server + '/assembly-001/state');
+            fetch(myRequest)
+                .then((response) => response.json())
+                .then((data) => {
+                    element.innerHTML = JSON.stringify(data, '\n', 2)
+                })
+                .catch(console.error);
+        }
+        setInterval(getAssemblyState, 1000);
+    </script>
+
+</body>
+
+</html>

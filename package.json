@@ -1,0 +1,17 @@
+{
+  "name": "iot-bridge",
+  "version": "1.0.0",
+  "description": "POC MQTT 2 Rest Service Bridge",
+  "main": "index.js",
+  "scripts": {
+    "run node-red mr-know": "node ./node_modules/node-red/red.js ./flows/node-red-flow.json --userDir ./node-red-data/"
+  },
+  "author": "Thomas Zehnder",
+  "license": "MIT",
+  "dependencies": {
+    "node-red": "^3.0.2",
+    "node-red-contrib-aedes": "^0.9.0",
+    "node-red-contrib-opcua": "^0.2.293",
+    "node-red-dashboard": "^3.2.3"
+  }
+}
